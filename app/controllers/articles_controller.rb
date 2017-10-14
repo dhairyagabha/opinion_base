@@ -15,6 +15,9 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
     @article.permalink = @article.name.downcase.gsub(' ','-').gsub!(/[^-0-9A-Za-z_.]/, '')
+    if params[:commit] == 'Publish Article'
+      @article.published_at = Time.now
+    end
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created!' }

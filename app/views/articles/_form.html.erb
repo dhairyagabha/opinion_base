@@ -22,7 +22,11 @@
       <%= f.label :body %>
       <%= f.cktext_area :body, placeholder: :body %>
     </div>
-    <%= f.submit 'Publish Article' %>
-    <%= f.submit 'Save Draft' %>
+    <div>
+       <%= f.label :tag_ids %>
+       <%= f.select :tag_ids, Tag.all.map{|t| [t.name, t.id]}, class:'select2' %>
+    </div>
+    <%= f.submit @article.persisted? ? 'Publish Changes' : 'Publish Article' %>
+    <%= f.submit 'Save Draft' if !@article.persisted? %>
     <%= link_to 'Cancel', :back %>
 <% end %>
