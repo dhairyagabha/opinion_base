@@ -4,13 +4,21 @@
     <title>OpinionBase</title>
     <%= csrf_meta_tags %>
 
+    <!-- Bootstrap 4.0 CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <%= alert %>
-  <%= notice %>
-    <%= yield %>
+    <%= render partial: 'layouts/partials/navbar'%>
+    <div class="container">
+      <%= alert %>
+      <%= notice %>
+      <%= yield %>
+    </div>
+
+    <%= render partial: 'layouts/partials/scripts' %>
   </body>
 </html>
