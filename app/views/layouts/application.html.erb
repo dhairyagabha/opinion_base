@@ -13,8 +13,10 @@
 
   <body>
     <%= render partial: 'layouts/partials/navbar'%>
-
-    <%= yield %>
+    
+      <%= alert %>
+      <%= notice %>
+      <%= yield %>
 
     <%= render partial: 'layouts/partials/scripts' %>
   </body>

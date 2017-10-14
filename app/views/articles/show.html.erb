@@ -1,0 +1,9 @@
+<h1><%= @article.name %></h1>
+<p><%= @article.excerpt %></p>
+<div>
+  <%= raw @article.body %>
+</div>
+<% if current_user.present? && @article.user == current_user %>
+    <%= link_to 'Edit', edit_article_path(@article.permalink) %>
+    <%= link_to 'Destroy', article_path(@article.permalink), method: :delete, 'data-confirm': 'Are you sure?' %>
+<% end %>
