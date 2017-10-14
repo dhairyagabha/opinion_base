@@ -36,6 +36,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = current_user.articles.find(params[:id])
+    @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
     if @article.update!(article_params)
       redirect_to article_path(@article.permalink), notice: 'Article updated successfully!'
     else
