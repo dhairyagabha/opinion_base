@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
     @article.permalink = @article.name.downcase.gsub(' ','-').gsub!(/[^-0-9A-Za-z_.]/, '')
+    @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
     if params[:commit] == 'Publish Article'
       @article.published_at = Time.now
     end

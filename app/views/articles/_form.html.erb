@@ -23,8 +23,8 @@
       <%= f.cktext_area :body, placeholder: :body %>
     </div>
     <div class="field">
-       <%= f.label :tag_ids %>
-       <%= f.select :tag_ids, Tag.all.map{|t| [t.name, t.id]}, {}, {multiple: true} %>
+       <%= f.label :tag_list %>
+       <%= f.select :tag_list, Tag.all.map{|t| [t.name, t.id]}, {}, {multiple: true} %>
     </div>
     <%= f.submit @article.persisted? ? 'Publish Changes' : 'Publish Article' %>
     <%= f.submit 'Save Draft' if !@article.persisted? %>
