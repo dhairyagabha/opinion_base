@@ -1,5 +1,5 @@
 <ul>
   <% @articles.each do |article| %>
-    <li><%= link_to article.name, article_path(article.permalink) %></li>
+    <li><%= link_to article.name, articles_path(article.permalink) %></li>
   <% end %>
 </ul>
