@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     end
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created!' }
+        format.html { redirect_to article_path(@article.permalink), notice: 'Article was successfully created!' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
