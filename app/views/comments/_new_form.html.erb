@@ -1,0 +1,6 @@
+<%= form_for(entity.comments.new, method: :post, remote: true) do |f| %>
+    <%= f.hidden_field :entity_type, value: entity.class %>
+    <%= f.hidden_field :entity_id, value: entity.id %>
+    <%= f.cktext_area :body %>
+    <%= f.submit 'Comment' %>
+<% end %>

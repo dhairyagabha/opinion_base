@@ -1,0 +1,6 @@
+$('.comments').append("<%= escape_javascript render(@comment) %>");
+$("form#new_comment")[0].reset();
+for ( instance in CKEDITOR.instances ){
+  CKEDITOR.instances[instance].updateElement();
+  CKEDITOR.instances[instance].setData('');
+}
