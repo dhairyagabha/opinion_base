@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find_by(permalink: params[:id])
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     end
     respond_to do |format|
       if @article.save
-        format.html { redirect_to article_path(@article.permalink), notice: 'Article was successfully created!' }
+        format.html { redirect_to article_path(@article), notice: 'Article was successfully created!' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -31,21 +31,21 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = current_user.articles.find_by(permalink: params[:id])
+    @article = current_user.articles.find(params[:id])
   end
 
   def update
     @article = current_user.articles.find(params[:id])
     @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
     if @article.update!(article_params)
-      redirect_to article_path(@article.permalink), notice: 'Article updated successfully!'
+      redirect_to article_path(@article), notice: 'Article updated successfully!'
     else
       render :edit
     end
   end
 
   def destroy
-    @article = current_user.articles.find_by(permalink: params[:id])
+    @article = current_user.articles.find(params[:id])
     if @article.destroy!
       redirect_to :index, notice: 'Article deleted successfully!'
     else

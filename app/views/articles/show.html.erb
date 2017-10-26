@@ -1,18 +1,30 @@
-<h1><%= @article.name %></h1>
-<p><%= @article.excerpt %></p>
-<div>
-  <%= raw @article.body %>
-</div>
-<p>Tags: <%= @article.tags.map{|t| t.name}.join(',') %></p>
-<div>
-  <div>
-    <p>New Comment</p>
-    <%= render partial:'comments/new_form', locals:{entity:@article} %>
-    <div class="comments">
-      <%= render @article.comments.where.not(id: nil).order(created_at: :asc) %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mt-4"><%= @article.name %></h1>
+      <p class="lead">
+        by
+        <a href="#"><%= @article.user.username %></a>
+      </p>
+      <hr>
+      <p>Posted on <%= @article.published_at.strftime('%B %d, %Y') %>&nbsp;&nbsp;&nbsp;
+      <span class="float-right"><%= render @article.tags %></span></p>
+      <hr>
+      <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+      <hr>
+      <div class="article-body">
+        <%= raw @article.body %>
+      </div>
+      <hr>
+      <%= render partial:'comments/new_form', locals:{entity:@article} %>
+      <div class="comments">
+        <%= render @article.comments.where.not(id: nil).order(created_at: :asc) %>
+      </div>
     </div>
+    <%= render 'layouts/articles_sidebar' %>
   </div>
 </div>
+
 <% if current_user.present? && @article.user == current_user %>
     <%= link_to 'Edit', edit_article_path(@article.permalink) %>
     <%= link_to 'Destroy', article_path(@article.permalink), method: :delete, 'data-confirm': 'Are you sure?' %>
