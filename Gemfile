@@ -35,6 +35,7 @@ gem 'devise'
 gem 'paperclip', '~> 5.0.0'
 gem 'ckeditor'
 gem 'select2-rails'
+gem 'pg_search'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

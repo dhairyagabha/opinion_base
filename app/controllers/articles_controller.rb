@@ -53,6 +53,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search
+    @articles = Article.search(params[:query])
+  end
+
   private
   def article_params
     params.require(:article).permit(:name, :excerpt, :body, :permalink, :published_at, :anonymous, :user_id)
