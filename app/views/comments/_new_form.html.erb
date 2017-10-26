@@ -1,0 +1,13 @@
+<div class="card my-4">
+  <h5 class="card-header">Leave a Comment:</h5>
+  <div class="card-body">
+    <%= form_for(entity.comments.new, method: :post, remote: true) do |f| %>
+        <%= f.hidden_field :entity_type, value: entity.class %>
+        <%= f.hidden_field :entity_id, value: entity.id %>
+        <div class="from-group">
+          <%= f.text_area :body, class: 'form-control', rows:3 %>
+        </div>
+        <%= f.submit 'Comment', class: 'btn btn-primary mt-3' %>
+    <% end %>
+  </div>
+</div>

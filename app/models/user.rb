@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :timeoutable
 
   has_many :articles
-
+  has_many :comments
 end

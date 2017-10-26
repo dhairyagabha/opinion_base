@@ -1,0 +1,16 @@
+body {
+  padding-top: 68px;
+}
+
+.article-body{
+  img{
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 70px;
+  }
+}
