@@ -16,7 +16,7 @@
             </div>
             <div class="card-footer text-muted">
               Posted on <%= article.published_at.strftime('%B %d, %Y') %> by
-              <%= article.user.username %>
+              @<%= article.user.username %>
             </div>
           </div>
       <% end %>

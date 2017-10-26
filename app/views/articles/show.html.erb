@@ -4,7 +4,7 @@
       <h1 class="mt-4"><%= @article.name %></h1>
       <p class="lead">
         by
-        <a href="#"><%= @article.user.username %></a>
+        <a href="#">@<%= @article.user.username %></a>
       </p>
       <hr>
       <p>Posted on <%= @article.published_at.strftime('%B %d, %Y') %>&nbsp;&nbsp;&nbsp;
