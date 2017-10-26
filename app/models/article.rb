@@ -1,4 +1,8 @@
 class Article < ApplicationRecord
+
+  include PgSearch
+  pg_search_scope :search, :against => [:name, :excerpt, :body]
+
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
