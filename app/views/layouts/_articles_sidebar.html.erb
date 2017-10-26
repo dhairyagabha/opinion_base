@@ -4,7 +4,7 @@
     <div class="card-body">
       <%= form_tag(search_articles_path, :method => "get", id: "search-form") do %>
           <div class="input-group">
-            <%= text_field_tag :query, params[:search], placeholder: "Search for...", class: 'form-control' %>
+            <%= text_field_tag :query, params[:search], placeholder: "Search for...", class: 'form-control', required: true %>
             <span class="input-group-btn">
             <%= submit_tag "Go!", :name => nil, class: 'btn btn-secondary' %></span>
           </div>
