@@ -5,7 +5,8 @@
     <!-- Blog Entries Column -->
     <div class="col-md-8">
 
-      <h1 class="my-4">Explore Articles</h1>
+      <h1 class="my-4">Search Results</h1>
+      <p>Search results for "<%= params[:query] %>"</p>
 
       <% @articles.each do |article| %>
           <div class="card mb-4">
