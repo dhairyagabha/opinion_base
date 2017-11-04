@@ -5,7 +5,8 @@
         <%= f.hidden_field :entity_type, value: entity.class %>
         <%= f.hidden_field :entity_id, value: entity.id %>
         <div class="from-group">
-          <%= f.text_area :body, class: 'form-control', rows:3 %>
+          <%= '<p>You need to <a href="/users/sign_in">sign in</a> or <a href="/users/sign_up">sign up</a> to comment.</p>'.html_safe if !current_user.present? %>
+          <%= f.text_area :body, class: 'form-control', rows:3, disabled: !current_user.present? %>
         </div>
         <%= f.submit 'Comment', class: 'btn btn-primary mt-3' %>
     <% end %>

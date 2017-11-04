@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       get :search
       post :search
     end
+    member do
+      post :interaction
+    end
   end
   resources :comments
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
