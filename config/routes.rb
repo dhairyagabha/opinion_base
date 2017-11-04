@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
   root to: 'home#index'
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   resources :articles do
     collection do
