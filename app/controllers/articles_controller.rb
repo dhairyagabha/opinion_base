@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except:[:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
+
   def index
     @articles = Article.all
   end
@@ -14,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(article_params)
-    @article.permalink = @article.name.downcase.gsub(' ','-').gsub!(/[^-0-9A-Za-z_.]/, '')
+    @article.permalink = @article.name.downcase.gsub(' ', '-').gsub!(/[^-0-9A-Za-z_.]/, '')
     @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
     if params[:commit] == 'Publish Article'
       @article.published_at = Time.now
@@ -55,6 +56,22 @@ class ArticlesController < ApplicationController
 
   def search
     @articles = Article.search(params[:query])
+  end
+
+  def interaction
+    article = Article.find(params[:id])
+    if !article.interactions.where(interaction: params[:interaction], user: current_user).any?
+      @interaction = article.interactions.new(interaction: params[:interaction], user: current_user)
+      respond_to do |format|
+        if @interaction.save
+          format.js
+        end
+      end
+    else
+      article.interactions.where(interaction: params[:interaction], user: current_user).first.destroy
+      @interaction = params[:interaction] == 'Like' ? 'Dislike' : 'Delete Bookmark'
+      @article = article
+    end
   end
 
   private

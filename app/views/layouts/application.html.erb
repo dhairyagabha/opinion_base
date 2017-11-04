@@ -13,9 +13,14 @@
 
   <body>
     <%= render partial: 'layouts/partials/navbar'%>
-    
-      <%= alert %>
-      <%= notice %>
+      <div class="container <%= (alert || notice) ? nil : 'hidden' %>">
+        <div class="alert alert-<%= alert ? 'danger' : 'success' %> alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= alert ? alert : notice %>
+        </div>
+      </div>
       <%= yield %>
 
     <%= render partial: 'layouts/partials/scripts' %>

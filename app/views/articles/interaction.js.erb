@@ -1,0 +1,9 @@
+<% if @interaction != 'Dislike' && @interaction != 'Delete Bookmark' && @interaction.interaction == 'Like' %>
+$('.like').html("<%= escape_javascript (link_to '<i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked'.html_safe, interaction_article_path(id: @interaction.entity.id, interaction: 'Like', format: :js), method: :post, remote: true) %>");
+<% elsif @interaction == 'Dislike' %>
+$('.like').html("<%= escape_javascript (link_to '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like'.html_safe, interaction_article_path(id: @article.id, interaction: 'Like', format: :js), method: :post, remote: true) %>");
+<% elsif @interaction != 'Delete Bookmark' && @interaction.interaction == 'Save' %>
+$('.bookmark').html("<%= escape_javascript (link_to '<i class="fa fa-bookmark" aria-hidden="true"></i> Bookmarked'.html_safe, interaction_article_path(id: @interaction.entity.id, interaction: 'Save', format: :js), method: :post, remote: true) %>");
+<% elsif @interaction == 'Delete Bookmark' %>
+$('.bookmark').html("<%= escape_javascript (link_to '<i class="fa fa-bookmark-o" aria-hidden="true"></i> Read Later'.html_safe, interaction_article_path(id: @article.id, interaction: 'Save', format: :js), method: :post, remote: true) %>");
+<% end %>

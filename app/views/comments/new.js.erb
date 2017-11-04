@@ -1,0 +1,1 @@
+$('#<%= @entity.class.name.downcase %>-<%= @entity.id %>').append("<%= escape_javascript render( partial:'comments/new_form', locals:{entity: @entity})%>");
