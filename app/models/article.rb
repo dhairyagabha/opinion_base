@@ -6,8 +6,8 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
-  has_many :comments, as: 'entity'
-  has_many :interactions, as: 'entity'
+  has_many :comments, as: 'entity', dependent: :destroy
+  has_many :interactions, as: 'entity', dependent: :destroy
   validates_presence_of :name, :body
 
   def self.tagged_with(name)
@@ -22,6 +22,14 @@ class Article < ApplicationRecord
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
+  end
+
+  def likes
+    self.interactions.where(interaction: 'Like').count
+  end
+
+  def read_later
+    self.interactions.where(interaction: 'Save').count
   end
 
 end

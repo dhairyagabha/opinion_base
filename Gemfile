@@ -36,6 +36,8 @@ gem 'paperclip', '~> 5.0.0'
 gem 'ckeditor'
 gem 'select2-rails'
 gem 'pg_search'
+gem 'chartkick'
+gem 'groupdate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
