@@ -1,6 +1,13 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+    @entity = params[:class].constantize.find(params[:entity])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @comment = current_user.comments.new(comment_params)
     respond_to do |format|

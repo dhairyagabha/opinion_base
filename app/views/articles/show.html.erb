@@ -4,11 +4,15 @@
       <h1 class="mt-4"><%= @article.name %></h1>
       <p class="lead">
         by
-        <a href="#"><%= @article.user.username %></a>
+        <a href="#">@<%= @article.user.username %></a>
       </p>
       <hr>
-      <p>Posted on <%= @article.published_at.strftime('%B %d, %Y') %>&nbsp;&nbsp;&nbsp;
-      <span class="float-right"><%= render @article.tags %></span></p>
+      <p>Posted on <%= @article.published_at.strftime('%B %d, %Y') %>&nbsp;<%= render @article.tags %>&nbsp;&nbsp;
+        <span class="float-right">
+          <span class="like"><%= link_to current_user.interactions.where(entity: @article, interaction:'Like').any? ? "<i class='fa fa-thumbs-up' aria-hidden='true'></i> <strong>Liked</strong>".html_safe : "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i> Like".html_safe, interaction_article_path(id: @article.id, interaction: 'Like', format: :js), method: :post, remote: true if current_user.present? %></span>
+          <span class="bookmark"><%= link_to current_user.interactions.where(entity: @article, interaction:'Save').any? ? "<i class='fa fa-bookmark' aria-hidden='true'></i> <strong>Bookmarked</strong>".html_safe : "<i class='fa fa-bookmark-o' aria-hidden='true'></i> Read Later".html_safe, interaction_article_path(id: @article.id, interaction: 'Save', format: :js), method: :post, remote: true if current_user.present? %></span>
+        </span>
+      </p>
       <hr>
       <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
       <hr>
@@ -26,6 +30,6 @@
 </div>
 
 <% if current_user.present? && @article.user == current_user %>
-    <%= link_to 'Edit', edit_article_path(@article.permalink) %>
-    <%= link_to 'Destroy', article_path(@article.permalink), method: :delete, 'data-confirm': 'Are you sure?' %>
+    <%= link_to 'Edit', edit_article_path(@article) %>
+    <%= link_to 'Destroy', article_path(@article), method: :delete, 'data-confirm': 'Are you sure?' %>
 <% end %>

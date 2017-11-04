@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       get :search
       post :search
     end
+    member do
+      post :interaction
+    end
   end
   resources :comments
 end
