@@ -1,0 +1,30 @@
+<div class="container">
+  <section class="articles mt-2">
+    <h2>Articles</h2>
+    <div class="table-responsive">
+      <table class="table table-stripped table-hover">
+        <thead>
+        <tr>
+          <th class="text-center" scope="col"></th>
+          <th class="text-left" scope="col">Title</th>
+          <th class="text-center" scope="col">Status</th>
+          <th class="text-center" scope="col">Published At</th>
+          <th class="text-center" scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @articles.each_with_index do |article, index| %>
+            <tr>
+              <td class="text-center"><%= index + 1 %></td>
+              <td class="text-left"><%= article.name %></td>
+              <td class="text-center"><%= article.published_at.present? ? 'published' : 'draft' %></td>
+              <td class="text-center"><%= article.published_at.present? ? article.published_at.strftime('%d %B, %Y') : '–' %></td>
+              <td class="text-center"><%= link_to 'Edit', edit_article_path(article) %>
+                <%= link_to 'Delete', article_path(article), method: :delete, 'data-confirm': 'Are you sure?' %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -11,6 +11,14 @@
           <%= link_to 'Explore', articles_path, class: 'nav-link' %>
           <%= controller_name == 'articles' ? '<span class="sr-only">(current)</span>'.html_safe : nil %>
         </li>
+        <li class="nav-item <%= controller_name == 'admin' && action_name == 'index' ? 'active' : nil %>">
+          <%= link_to 'Dashboard', admin_path, class: 'nav-link' %>
+          <%= controller_name == 'admin' && action_name == 'index'  ? '<span class="sr-only">(current)</span>'.html_safe : nil %>
+        </li>
+        <li class="nav-item <%= controller_name == 'admin' && action_name == 'my_articles' ? 'active' : nil %>">
+          <%= link_to 'My Articles', my_articles_path, class: 'nav-link' %>
+          <%= controller_name == 'admin' && action_name == 'my_articles' ? '<span class="sr-only">(current)</span>'.html_safe : nil %>
+        </li>
         <% if current_user.present? %>
             <li class="nav-item dropdown">
               <%= link_to current_user.username, '#', class:'nav-link dropdown-toggle', id:'user-menu', 'data-toggle': 'dropdown', 'aria-haspopup': true, 'aria-expanded': false%>
