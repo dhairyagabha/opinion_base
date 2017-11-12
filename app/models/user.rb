@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :articles
   has_many :comments
   has_many :interactions
-  has_many :followings, foreign_key: 'user_id'
-  has_many :followers, class_name:'Following', as: 'follow'
+  has_many :followings, foreign_key: 'user_id' #fetching people a user follows
+  has_many :followers, class_name:'Following', as: 'follow' #fetching people who follow the user
 
   def follows(user)
     self.followings.where(follow_id: user, follow_type: 'User')
