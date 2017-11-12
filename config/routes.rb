@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       get :search
       post :search
+      get '/author/:username' => 'articles#author', as: 'author'
     end
     member do
       post :interaction

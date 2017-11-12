@@ -38,6 +38,8 @@ gem 'select2-rails'
 gem 'pg_search'
 gem 'chartkick'
 gem 'groupdate'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

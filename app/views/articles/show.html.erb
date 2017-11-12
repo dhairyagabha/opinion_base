@@ -6,7 +6,7 @@
       <p class="lead text-center text-sm-left">
         by
         <a href="#">@<%= @article.user.username %></a>
-        <small><span id="author-follow"><%= link_to !current_user.follows(@article.user.id).any? ? '<i class="fa fa-user-plus"></i> Following'.html_safe : '<i class="fa fa-user-plus"></i>Follow'.html_safe,follow_me_path(user_id: @article.user.id), method: :post, remote: true, class:'badge badge-primary' %></span></small>
+        <small><span id="author-follow"><%= link_to current_user.follows(@article.user.id).any? ? '<i class="fa fa-user-plus"></i> Following'.html_safe : '<i class="fa fa-user-plus"></i>Follow'.html_safe,follow_me_path(user_id: @article.user.id), method: :post, remote: true, class:'badge badge-primary' %></span></small>
       </p>
       <hr>
       <div class="row no-margin">

@@ -1,7 +1,7 @@
-<div class="card mb-4">
+<div class="card mb-4 article-card">
   <div class="card-body">
     <h2 class="card-title"><%= article.name %></h2>
-    <p class="card-text"><%= article.excerpt %></p>
+    <p class="card-text"><%= article.excerpt.truncate(250) %></p>
     <%= link_to 'Read More →'.html_safe, article_path(article), class: 'btn btn-primary' %>
   </div>
   <div class="card-footer text-muted">

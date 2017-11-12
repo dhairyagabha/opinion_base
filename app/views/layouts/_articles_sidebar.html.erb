@@ -25,10 +25,15 @@
     </div>
   </div>
   <div class="card my-4">
-    <h5 class="card-header">Side Widget</h5>
-    <div class="card-body">
-      You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4
-      card containers!
+    <h5 class="card-header">Following</h5>
+    <div class="card-body no-padding">
+      <ul class="list-group">
+        <% current_user.followings.each do |f| %>
+            <li class="list-group-item row no-margin <%= params[:username] && params[:username] == f.follow.username ? 'active' : nil %>">
+              <%= link_to image_tag('http://placehold.it/30x30', class: 'rounded-circle')+'  @'+f.follow.username, author_articles_path(f.follow.username) %>
+            </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
