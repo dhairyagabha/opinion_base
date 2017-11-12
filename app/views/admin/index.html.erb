@@ -54,7 +54,7 @@
             <% @articles.order(:views).limit(5).each_with_index do |article, index| %>
                 <tr>
                   <td class="text-center"><%= index + 1 %></td>
-                  <td class="text-left"><%= article.name %></td>
+                  <td class="text-left"><%= link_to article.name, article_path(article) %></td>
                   <td class="text-center"><%= article.views %></td>
                   <td class="text-center"><%= article.likes %></td>
                   <td class="text-center"><%= article.read_later %></td>

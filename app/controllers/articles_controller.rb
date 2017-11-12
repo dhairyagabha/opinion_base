@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order(published_at: :desc).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -55,7 +55,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.search(params[:query])
+    @articles = Article.search(params[:query]).order(published_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    render :index
   end
 
   def interaction
@@ -72,6 +73,12 @@ class ArticlesController < ApplicationController
       @interaction = params[:interaction] == 'Like' ? 'Dislike' : 'Delete Bookmark'
       @article = article
     end
+  end
+
+  def author
+    @user = User.find_by(username: params[:username])
+    @articles = @user.articles.order(published_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    render :index
   end
 
   private
