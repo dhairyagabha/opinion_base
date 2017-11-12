@@ -1,6 +1,9 @@
 <div class="container">
   <section class="articles mt-2">
-    <h2>Articles</h2>
+    <div class="col-12">
+      <h2 class="float-left">Articles</h2>
+      <%= link_to 'New Article', new_article_path, class:'btn btn-primary float-right' %>
+    </div>
     <div class="table-responsive">
       <table class="table table-stripped table-hover">
         <thead>
