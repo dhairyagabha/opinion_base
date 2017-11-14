@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+      <h1 class="my-4">Articles tagged by "<%= @tag.name %>"</h1>
+
+      <%= render @articles %>
+
+      <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <%= render 'layouts/articles_sidebar' %>
+
+  </div>
+  <!-- /.row -->
+
+</div>
