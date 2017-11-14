@@ -24,6 +24,7 @@
       </div>
     </div>
   </div>
+  <% if current_user.present? %>
   <div class="card my-4">
     <h5 class="card-header">Following</h5>
     <div class="card-body no-padding">
@@ -36,4 +37,5 @@
       </ul>
     </div>
   </div>
+  <% end %>
 </div>
