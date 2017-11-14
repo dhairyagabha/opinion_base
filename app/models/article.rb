@@ -32,8 +32,4 @@ class Article < ApplicationRecord
     self.interactions.where(interaction: 'Save').count
   end
 
-  def to_param
-    permalink.parameterize
-  end
-
 end

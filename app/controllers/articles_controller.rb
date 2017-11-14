@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find_by(permalink: params[:id])
+    @article = Article.find(params[:id])
   end
 
   def new
