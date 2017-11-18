@@ -1,11 +1,12 @@
 class AdminController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @articles = current_user.articles.all.order(:published_at)
   end
 
   def my_articles
-    @articles = current_user.articles.all.order(:published_at)
+    @articles = current_user.articles.all.order(:published_at).paginate(:page => params[:page], :per_page => 10)
   end
 
   def follow_user

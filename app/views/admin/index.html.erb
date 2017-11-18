@@ -1,6 +1,6 @@
 <div class="container">
   <section class="metrics">
-    <div class="row no-margin mb-4">
+    <div class="row no-margin mb-4 mt-4">
       <div class="col-sm-4">
         <div class="card">
           <small class="card-header text-center">
@@ -22,7 +22,7 @@
           <small class="card-header text-center">
             Profile Views
           </small>
-          <h1 class="text-center"><%= @articles.count %></h1>
+          <h1 class="text-center"><%= current_user.views %></h1>
         </div>
       </div>
       <div class="col-sm-12">

@@ -1,14 +1,9 @@
 <div class="col-md-4">
   <div class="card my-4">
-    <h5 class="card-header">Search</h5>
+    <%= image_tag @author.avatar.url, class:'card-img-top rounded', alt:@author.username %>
     <div class="card-body">
-      <%= form_tag(search_articles_path, :method => "get", id: "search-form") do %>
-          <div class="input-group">
-            <%= text_field_tag :query, params[:search], placeholder: "Search for...", class: 'form-control', required: true %>
-            <span class="input-group-btn">
-            <%= submit_tag "Go!", :name => nil, class: 'btn btn-secondary' %></span>
-          </div>
-      <% end %>
+      <h4 class="card-title text-center no-margin"><%= @author.name %></h4>
+      <%= link_to 'Edit', edit_author_path(@author.username), class:'btn btn-primary btn-block' if current_user.present? && @author == current_user %>
     </div>
   </div>
   <!-- Categories Widget -->
@@ -31,7 +26,7 @@
           <ul class="list-group">
             <% current_user.followings.each do |f| %>
                 <li class="list-group-item row no-margin <%= params[:username] && params[:username] == f.follow.username ? 'active' : nil %>">
-                  <%= link_to image_tag( f.follow.avatar.url(:thumb) , class: 'rounded-circle')+'  @'+f.follow.username, author_articles_path(f.follow.username) %>
+                  <%= link_to image_tag(f.follow.avatar.url(:thumb), class: 'rounded-circle')+'  @'+f.follow.username, author_articles_path(f.follow.username) %>
                 </li>
             <% end %>
           </ul>

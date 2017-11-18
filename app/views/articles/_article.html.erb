@@ -6,6 +6,6 @@
   </div>
   <div class="card-footer text-muted">
     Posted on <%= article.published_at.strftime('%B %d, %Y') %> by
-    @<%= article.user.username %>
+    <%= link_to '@'+article.user.username, author_path(article.user.username) %>
   </div>
 </div>
