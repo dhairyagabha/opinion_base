@@ -2,7 +2,7 @@
   <section class="articles mt-2">
     <div class="col-12">
       <h2 class="float-left">Articles</h2>
-      <%= link_to 'New Article', new_article_path, class:'btn btn-primary float-right' %>
+      <%= link_to 'New Article', new_article_path, class: 'btn btn-primary float-right' %>
     </div>
     <div class="table-responsive">
       <table class="table table-stripped table-hover">
@@ -18,8 +18,8 @@
         <tbody>
         <% @articles.each_with_index do |article, index| %>
             <tr>
-              <td class="text-center"><%= index + 1 %></td>
-              <td class="text-left"><%= link_to article.name, article_path(article)%></td>
+              <td class="text-center"><%= (10 * (params[:page].to_i - 1)) + index + 1 %></td>
+              <td class="text-left"><%= link_to article.name, article_path(article) %></td>
               <td class="text-center"><%= article.published_at.present? ? 'published' : 'draft' %></td>
               <td class="text-center"><%= article.published_at.present? ? article.published_at.strftime('%d %B, %Y') : '–' %></td>
               <td class="text-center"><%= link_to 'Edit', edit_article_path(article) %>
@@ -27,6 +27,13 @@
             </tr>
         <% end %>
         </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="5">
+            <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
+          </td>
+        </tr>
+        </tfoot>
       </table>
     </div>
   </section>

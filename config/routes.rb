@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :comments
   resources :tags
+  resources :authors
   get '/admin' => 'admin#index'
   get '/my-articles' => 'admin#my_articles'
   post '/follow-me' => 'admin#follow_user'

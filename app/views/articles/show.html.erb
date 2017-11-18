@@ -5,7 +5,7 @@
       <h3 class="mt-4 text-center text-sm-left"><%= @article.name %></h3>
       <p class="lead text-center text-sm-left">
         by
-        <a href="#">@<%= @article.user.username %></a>
+        <%= link_to '@'+@article.user.username, author_path(@article.user.username) %>
         <small><span id="author-follow"><%= link_to current_user.present? && current_user.follows(@article.user.id).any? ? '<i class="fa fa-user-plus"></i> Following'.html_safe : '<i class="fa fa-user-plus"></i>Follow'.html_safe,follow_me_path(user_id: @article.user.id), method: :post, remote: true, class:'badge badge-primary' %></span></small>
       </p>
       <hr>

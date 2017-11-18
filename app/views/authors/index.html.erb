@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h1 class="my-4">Authors</h1>
+
+      <%= render partial: "author", collection: @authors %>
+
+      <%= will_paginate @authors, renderer: BootstrapPagination::Rails %>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <%= render 'layouts/articles_sidebar' %>
+
+  </div>
+  <!-- /.row -->
+
+</div>

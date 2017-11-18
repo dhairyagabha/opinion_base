@@ -1,0 +1,23 @@
+<% @author.update!(views: @author.views+1) %>
+<div class="container">
+  <div class="row">
+    <%= render partial: 'author_sidebar' %>
+    <div class="col-lg-8">
+      <h3 class="mt-4 text-center text-sm-left">Something about me</h3>
+      <div class="article-body">
+        <%= raw @author.description %>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <% articles = @author.articles.paginate(:page => params[:page], :per_page => 5) %>
+          <h3 class="float-left">Articles</h3>
+          <div class="float-right">
+            <%= will_paginate articles, renderer: BootstrapPagination::Rails %>
+          </div>
+        </div>
+        <%= render articles %>
+      </div>
+    </div>
+  </div>
+</div>

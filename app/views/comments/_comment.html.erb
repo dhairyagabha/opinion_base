@@ -1,12 +1,12 @@
 <div class="media mt-2 mb-1">
-  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+  <%= image_tag comment.user.avatar.url(:thumb), class: 'd-flex mr-3 rounded-circle' %>
   <div class="media-body">
     <h5 class="mt-0 comment-author">@<%= comment.user.username %></h5>
     <div>
       <%= raw comment.body %>
     </div>
-    <small>Commented at <%= comment.created_at.strftime('%B %d, %Y') %>
-      <%= link_to 'Comment', new_comment_path(entity: comment, class: comment.class), method: :get, remote: true%>
+    <small>Commented at <%= comment.created_at.strftime('%B %d, %Y %I:%m %p') %>
+      <%= link_to 'Comment', new_comment_path(entity: comment, class: comment.class), method: :get, remote: true %>
     </small>
     <div id="comment-<%= comment.id %>" class="mt-2 nested-comment-form">
       <%= render comment.comments.order(created_at: :asc) %>
