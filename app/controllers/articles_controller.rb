@@ -2,11 +2,11 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @articles = Article.all.order(published_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    @articles = Article.includes(:user).all.order(published_at: :desc).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.includes(:comments, :tags).find(params[:id])
   end
 
   def new

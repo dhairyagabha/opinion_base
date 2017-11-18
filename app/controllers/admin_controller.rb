@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @articles = current_user.articles.all.order(:published_at)
