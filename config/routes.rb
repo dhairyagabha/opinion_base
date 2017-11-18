@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resources :comments
+  resources :tags
   get '/admin' => 'admin#index'
   get '/my-articles' => 'admin#my_articles'
   post '/follow-me' => 'admin#follow_user'

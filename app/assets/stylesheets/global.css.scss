@@ -160,6 +160,12 @@ ul.pagination li.disabled span, ul.pagination li.disabled a{
   border-color: #4C5CA5;
 }
 
+.article-body p img{
+  display:block;
+  margin: auto auto;
+}
+
+
 @media (min-width: 992px) {
   body {
     padding-top: 70px;
