@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-lg-12">
           <% Tag.all.each do |t| %>
-              <%= link_to t.name, tag_path(t.name.downcase) %>&nbsp;&nbsp;&nbsp;
+              <a href="#"><%= t.name %></a>&nbsp;&nbsp;&nbsp;
           <% end %>
         </div>
       </div>

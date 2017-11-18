@@ -1,19 +1,20 @@
 <% @article.update!(views: @article.views+1) %>
 <div class="container">
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-lg-8">
       <h3 class="mt-4 text-center text-sm-left"><%= @article.name %></h3>
       <p class="lead text-center text-sm-left">
         by
         <a href="#">@<%= @article.user.username %></a>
-        <small><span id="author-follow"><%= link_to current_user.follows(@article.user.id).any? ? '<i class="fa fa-user-plus"></i> Following'.html_safe : '<i class="fa fa-user-plus"></i>Follow'.html_safe,follow_me_path(user_id: @article.user.id), method: :post, remote: true, class:'badge badge-primary'  if current_user.present? %></span></small>
+        <small><span id="author-follow"><%= link_to current_user.present? && current_user.follows(@article.user.id).any? ? '<i class="fa fa-user-plus"></i> Following'.html_safe : '<i class="fa fa-user-plus"></i>Follow'.html_safe,follow_me_path(user_id: @article.user.id), method: :post, remote: true, class:'badge badge-primary' %></span></small>
       </p>
       <hr>
       <div class="row no-margin">
         <div class="col-sm-6 text-center text-sm-left">Posted on <%= @article.published_at.strftime('%B %d, %Y') %>&nbsp;<%= render @article.tags %></div>
         <div class="col-sm-6 text-center text-sm-right">
           <span class="badge badge-secondary"><%= @article.views %> Reads</span>
-          <span class="like"><%= link_to current_user.interactions.where(entity: @article, interaction:'Like').any? ? "<i class='fa fa-thumbs-up' aria-hidden='true'></i> <strong>Liked</strong>".html_safe : "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i> Like".html_safe, interaction_article_path(id: @article.id, interaction: 'Like', format: :js), method: :post, remote: true if current_user.present? %></span>
+          <span class="like">
+            <%= link_to current_user.interactions.where(entity: @article, interaction:'Like').any? ? "<i class='fa fa-thumbs-up' aria-hidden='true'></i> <strong>Liked</strong>".html_safe : "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i> Like".html_safe, interaction_article_path(id: @article.id, interaction: 'Like', format: :js), method: :post, remote: true if current_user.present? %></span>
           <span class="bookmark"><%= link_to current_user.interactions.where(entity: @article, interaction:'Save').any? ? "<i class='fa fa-bookmark' aria-hidden='true'></i> <strong>Bookmarked</strong>".html_safe : "<i class='fa fa-bookmark-o' aria-hidden='true'></i> Read Later".html_safe, interaction_article_path(id: @article.id, interaction: 'Save', format: :js), method: :post, remote: true if current_user.present? %></span>
         </div>
       </div>
@@ -24,10 +25,10 @@
         <%= raw @article.body %>
       </div>
       <hr>
-      <%= render partial:'comments/new_form', locals:{entity:@article} %>
       <div class="comments">
-        <%= render @article.comments.where.not(id: nil).order(created_at: :asc) %>
+        <%= render @article.comments %>
       </div>
+      <%= render partial:'comments/new_form', locals:{entity:@article} %>
     </div>
     <%= render 'layouts/articles_sidebar' %>
   </div>
