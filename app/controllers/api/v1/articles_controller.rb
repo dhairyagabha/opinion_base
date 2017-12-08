@@ -15,7 +15,7 @@ module Api
 
       private
       def client_params
-        params.require(:client).permit!
+        params.require(:article).permit!
       end
     end
   end
